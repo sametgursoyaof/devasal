@@ -13,7 +13,7 @@ class CreateMedicinesTable extends Migration
      */
     public function up()
     {
-        Schema::create('devasal', function (Blueprint $table) {
+        Schema::create('medicines', function (Blueprint $table) {
             $table->id();
             $table->text('name');
             $table->text('description');
@@ -25,7 +25,7 @@ class CreateMedicinesTable extends Migration
             $table->text('usage');
             $table->text('extra_information');
             $table->text('barcode');
-            $table->integer('componies_id');
+            $table->integer('companies_id');
             $table->string('url')->unique();
             $table->timestamps();
         });
