@@ -28,15 +28,16 @@ Route::get('/', function () {
     $harfler=['Anasayfa','#','A','B','C','D','E','F','G','H','İ','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','Y','X','Z'];
     $tanimsiz=['%','1','2','3','4','5','6','7','8','9','0'];
 
-    $value=request('h');
+    $sayac=1;
+    $value1=request('h');
         $medicine = \App\Medicines::all();
         foreach ($medicine as $m){
-            if(isset($value)){
+            if(isset($value1)){
                 $deger= substr($m->name, 0);
-                if(substr_count($deger, $value)){
+                if(substr_count($deger, $value1)){
                     $medicines = \App\Medicines::where('name',$deger)->get();
                 }
-                if($value=='Anasayfa'){
+                if($value1=='Anasayfa'){
                     $medicines = \App\Medicines::all();
                 } 
             }else{
@@ -48,5 +49,5 @@ Route::get('/', function () {
                 }
             }
         }
-    return view('welcome', ['medicines' => $medicines],compact('harfler'));
+    return view('welcome', ['medicines' => $medicines],compact('harfler','value1','sayac'));
 });

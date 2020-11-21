@@ -65,7 +65,7 @@
     </head>
     <body>
         <div class="position-ref full-height ">
-            @if (Route::has('login'))
+            {{-- @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
@@ -77,7 +77,7 @@
                         @endif
                     @endauth
                 </div>
-            @endif
+            @endif --}}
 
             <div class="content">
                 <div class="title m-b-md">
@@ -90,11 +90,36 @@
                 </div>
             </div><hr>
             <div class="links">
-                <ol>
-                    @foreach ($medicines as $m)
-                        <li><a href="{{ $m->url }}">{{ $m->name }}</a></li>
-                    @endforeach
-                </ol>
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="2">
+                                @if ($value1=='Anasayfa')
+                                    Sitemize Son Eklenen İlaçlar
+                                @elseif($value1==null)
+                                    # İlaçlar
+                                @else
+                                    {{$value1}} Harfi İle Başlayan İlaçlar
+                                @endif
+                            </th>
+                        </tr>
+                        <tr>
+                            <th>İlaç No</th>
+                            <th>İlaç İsmi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($medicines as $m)
+                        <tr>
+                            <td>{{$sayac}}</td>
+                            <td>
+                                <a href="{{ $m->url }}">{{ $m->name }}</a><br>
+                                <input type="hidden"{{$sayac=$sayac+1}}>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
     </body>
