@@ -24,6 +24,7 @@ Route::get('/home', 'HomeController@index')->name('home');
     return view('create');
 }); */
 Route::resource('medicines', 'MedicinesController');
+Route::resource('companies', 'CompaniesController');
 Route::get('/', function () {
     $harfler=['Anasayfa','#','A','B','C','D','E','F','G','H','İ','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','Y','X','Z'];
     $tanimsiz=['%','1','2','3','4','5','6','7','8','9','0'];
