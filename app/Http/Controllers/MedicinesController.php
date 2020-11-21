@@ -26,7 +26,6 @@ class MedicinesController extends Controller
             'url' => 'required|url|max:255',
             
         ]);
-    
         $medicines = tap(new \App\Medicines($data))->save();
     
         return redirect('/');

@@ -13,9 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return view('welcome');
-});
+}); */
 
 Auth::routes();
 
@@ -25,6 +25,28 @@ Route::get('/home', 'HomeController@index')->name('home');
 }); */
 Route::resource('medicines', 'MedicinesController');
 Route::get('/', function () {
-    $medicines = \App\Medicines::all();
-    return view('welcome', ['medicines' => $medicines]);
+    $harfler=['Anasayfa','#','A','B','C','D','E','F','G','H','İ','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','Y','X','Z'];
+    $tanimsiz=['%','1','2','3','4','5','6','7','8','9','0'];
+
+    $value=request('h');
+        $medicine = \App\Medicines::all();
+        foreach ($medicine as $m){
+            if(isset($value)){
+                $deger= substr($m->name, 0);
+                if(substr_count($deger, $value)){
+                    $medicines = \App\Medicines::where('name',$deger)->get();
+                }
+                if($value=='Anasayfa'){
+                    $medicines = \App\Medicines::all();
+                } 
+            }else{
+                $deger= substr($m->name, 0);
+                foreach($tanimsiz as $t){
+                    if(substr_count($deger,$t)){
+                        $medicines = \App\Medicines::where('name',$deger)->get();
+                    }
+                }
+            }
+        }
+    return view('welcome', ['medicines' => $medicines],compact('harfler'));
 });
