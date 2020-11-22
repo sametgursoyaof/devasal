@@ -1,13 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Companies;
 use Illuminate\Http\Request;
 
 class CompaniesController extends Controller
 {
     public function index(){
-        return view('/create2');
+        $companies = \App\Companies::all();
+        return view('companies.index',compact('companies'));
+    }
+    public function create(){
+        return view('companies.create');
     }
     public function store(Request $request)
     {
@@ -17,6 +21,6 @@ class CompaniesController extends Controller
         ]);
         $companies = tap(new \App\Companies($data))->save();
     
-        return redirect('/');
+        return redirect('companies');
     }
 }

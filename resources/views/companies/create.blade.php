@@ -5,7 +5,7 @@
             <div class="col-1 col-sm-2"></div>
             <div class="col-10 col-sm-8">
                 <div class="title text-center">
-                    <h1>YENİ VERİ OLUŞTUR</h1>
+                    <h1>YENİ FİRMA EKLE</h1>
                 </div>
                 <form action="/companies" method="post">
                     @csrf

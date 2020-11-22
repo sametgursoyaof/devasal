@@ -65,36 +65,4 @@ class MedicinesController extends Controller
         $companies=Companies::where('id',$c)->first()->name;
         return view('medicines.show',compact('medicines','companies'));
     } 
-    public function edit($id){
-        $task=Task::findOrFail($id);
-        $now = Carbon\Carbon::parse($task->taskdate);
-        $islemler=$task->operations;
-        $operation=Operation::all();
-        return view('member.edit',compact('task','operation','islemler','now'));
-    }
-    public function update($id){
-        $task=Task::findOrFail($id);
-        $task->taskdate=request('taskdate');
-        $task->save();
-        $islemler=request('islemler');
-        foreach($islemler as $islem){
-            if(!$task->operations()->find($islem)){
-                $task->operations()->attach($islem);
-            }
-        }
-        return redirect('/member');
-    }
-    public function removeOp(){
-        $task_id=request('task_id');
-        $op=request('op_id');
-        $task=Task::findOrFail($task_id);
-        $task->operations()->detach($op);
-        return redirect('/member/'.$task_id.'/edit');
-    }
-    public function status($id){
-        $task=Task::findOrFail($id);
-        $task->status==0 ? $task->status=1 : $task->status=0;
-        $task->save();
-        return redirect('/member');
-    }
 }
