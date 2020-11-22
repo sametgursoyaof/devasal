@@ -73,20 +73,21 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror --}}
                     </div>
-                    <div class="form-group">
-                        <label for="companies_id">Üretici</label>
-                        <input type="text" class="form-control" required id="companies_id" name="companies_id" value="{{ old('companies_id') }}">
-                        {{-- @error('companies_id')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror --}}
-                    </div>
+                    <label class="label" for="title">Üretici</label>
+                    <div class="col-sm-12">
+                        <select class="form-control" name=companies_id>
+                            @foreach ($companies as $c)
+                                <option value="{{ $c->id }}">{{ $c->name }}</option>
+                            @endforeach
+                        </select>
+                    </div><br>
                     <div class="form-group">
                         <label for="url">Url</label>
-                        <input type="text" class="form-control" required id="url" name="url" placeholder="URL" value="{{ old('url') }}">
-                        {{-- @error('url')
+                        <input type="url" class="form-control" required id="url" name="url" value="{{ old('url') }}">
+                        {{-- @error('barcode')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror --}}
-                    </div>
+                    </div><br>
                     <button type="submit" class="btn btn-primary">Kaydet</button>
                 </form>
                 </div>
@@ -95,3 +96,4 @@
         </div>
     </div>
 @endsection
+

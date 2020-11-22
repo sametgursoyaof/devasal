@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use App\Companies;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 class Medicines extends Model
@@ -21,4 +21,9 @@ class Medicines extends Model
         'companies_id',
         'url'
     ];
+    public function owner()
+    {
+        return $this->belongsTo(Companies::class, 'companies_id','id');
+    }
+    
 }
