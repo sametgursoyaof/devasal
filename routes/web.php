@@ -34,18 +34,18 @@ Route::get('/', function () {
         $medicine = \App\Medicines::all();
         foreach ($medicine as $m){
             if(isset($value1)){
-                $deger= substr($m->name, 0);
+                $deger= substr($m->name, 0,1);
                 if(substr_count($deger, $value1)){
-                    $medicines = \App\Medicines::where('name',$deger)->get();
+                    $medicines = \App\Medicines::where('name',$m->name)->get();
                 }
                 if($value1=='Anasayfa'){
                     $medicines = \App\Medicines::all();
                 } 
             }else{
-                $deger= substr($m->name, 0);
+                $deger= substr($m->name, 0,1);
                 foreach($tanimsiz as $t){
                     if(substr_count($deger,$t)){
-                        $medicines = \App\Medicines::where('name',$deger)->get();
+                        $medicines = \App\Medicines::where('name',$m->name)->get();
                     }
                 }
             }

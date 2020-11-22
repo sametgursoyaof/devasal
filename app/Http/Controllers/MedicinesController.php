@@ -56,7 +56,7 @@ class MedicinesController extends Controller
         ]);
         $medicines = tap(new \App\Medicines($data))->save();
     
-        return redirect('/medicines');
+        return redirect('/?h=Anasayfa');
     }
     public function show($name){
         $name = str_replace('-', ' ', $name);
