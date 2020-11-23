@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Companies;
 use Illuminate\Http\Request;
 use App\Medicines;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Auth;
 class MedicinesController extends Controller
 {
     public function index(){
@@ -15,18 +17,18 @@ class MedicinesController extends Controller
         $medicine = \App\Medicines::all();
         foreach ($medicine as $m){
             if(isset($value1)){
-                $deger= substr($m->name, 0);
+                $deger= substr($m->name,0,1);
                 if(substr_count($deger, $value1)){
-                    $medicines = \App\Medicines::where('name',$deger)->get();
+                    $medicines = \App\Medicines::where('name',$m->name)->get();
                 }
                 if($value1=='Anasayfa'){
                     $medicines = \App\Medicines::all();
                 } 
             }else{
-                $deger= substr($m->name, 0);
+                $deger= substr($m->name,0,1);
                 foreach($tanimsiz as $t){
                     if(substr_count($deger,$t)){
-                        $medicines = \App\Medicines::where('name',$deger)->get();
+                        $medicines = \App\Medicines::where('name',$m->name)->get();
                     }
                 }
             }
@@ -34,6 +36,10 @@ class MedicinesController extends Controller
     return view('medicines.index', ['medicines' => $medicines],compact('harfler','value1','sayac'));
     }
     public function create(){
+        if (Auth::user()==null)
+        {
+            abort(404);
+        }
         $companies=Companies::all();
         return view('medicines.create',compact('companies'));
     }

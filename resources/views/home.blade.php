@@ -5,17 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
+                <h1 class="text-center">Devasal</h1><hr>
+                <a href="/medicines" type="submit" class="btn btn-primary">Anasayfa'ya Git</a><br>
+                <a href="/medicines/create" type="submit" class="btn btn-primary">İlaç Ekle</a><br>
+                <a href="/companies" type="submit" class="btn btn-primary">Firmalar / Firma Ekle</a><br>
             </div>
         </div>
     </div>
