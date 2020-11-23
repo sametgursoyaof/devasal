@@ -25,5 +25,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 }); */
 Route::resource('medicines', 'MedicinesController');
 Route::resource('companies', 'CompaniesController');
-
 Route::get('/', 'MedicinesController@index');
+Route::get('{url}', 'MedicinesController@show');

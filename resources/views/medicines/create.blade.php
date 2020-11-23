@@ -81,13 +81,10 @@
                             @endforeach
                         </select>
                     </div><br>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label for="url">Url</label>
-                        <input type="url" class="form-control" required id="url" name="url" value="{{ old('url') }}">
-                        {{-- @error('barcode')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror --}}
-                    </div><br>
+                        <input type="text" class="form-control" required id="url" name="url" value="{{ old('url') }}">
+                    </div><br> --}}
                     <button type="submit" class="btn btn-primary">Kaydet</button>
                 </form>
                 </div>

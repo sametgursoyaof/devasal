@@ -65,19 +65,13 @@
     </head>
     <body>
         <div class="position-ref full-height ">
-            {{-- @if (Route::has('login'))
+            @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
+                        <a href="{{ url('/home') }}">Admin Anasayfa</a>
                     @endauth
                 </div>
-            @endif --}}
+            @endif 
 
             <div class="content">
                 <div class="title m-b-md">
@@ -85,7 +79,11 @@
                 </div>
                 <div>
                     @foreach ($harfler as $h)
-                        <a href="/?h={{$h}}">{{$h}}</a>&nbsp;
+                        @if ($h=='#')
+                            <a href="/?h=1">{{$h}}</a>&nbsp;
+                        @else
+                            <a href="/?h={{$h}}">{{$h}}</a>&nbsp;
+                        @endif
                     @endforeach
                 </div>
             </div><hr>
@@ -94,9 +92,9 @@
                     <thead>
                         <tr>
                             <th colspan="2">
-                                @if ($value1=='Anasayfa')
+                                @if ($value1=='Anasayfa'|| $value1==null)
                                     Sitemize Son Eklenen İlaçlar
-                                @elseif($value1==null)
+                                @elseif($value1=='1')
                                     # İlaçlar
                                 @else
                                     {{$value1}} Harfi İle Başlayan İlaçlar

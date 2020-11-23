@@ -4,6 +4,7 @@ namespace App;
 use App\Companies;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 class Medicines extends Model
 {
     protected $fillable = [

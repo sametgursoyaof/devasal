@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Medicines;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Auth;
+use Illuminate\Support\Str;
 class MedicinesController extends Controller
 {
     public function index(){
@@ -17,6 +18,7 @@ class MedicinesController extends Controller
         $medicine = \App\Medicines::all();
         foreach ($medicine as $m){
             if(isset($value1)){
+                /* dd($value1); */
                 $deger= substr($m->name,0,1);
                 if(substr_count($deger, $value1)){
                     $medicines = \App\Medicines::where('name',$m->name)->get();
@@ -24,16 +26,20 @@ class MedicinesController extends Controller
                 if($value1=='Anasayfa'){
                     $medicines = \App\Medicines::all();
                 } 
-            }else{
-                $deger= substr($m->name,0,1);
-                foreach($tanimsiz as $t){
-                    if(substr_count($deger,$t)){
-                        $medicines = \App\Medicines::where('name',$m->name)->get();
+                if($value1=='1'){
+                    $deger= substr($m->name,0,1);
+                    foreach($tanimsiz as $t){
+                        if(substr_count($deger,$t)){
+                            $medicines = \App\Medicines::where('name',$m->name)->get();
+                        }
                     }
                 }
             }
+            else{
+                $medicines = \App\Medicines::all();
+            }
         }
-    return view('medicines.index', ['medicines' => $medicines],compact('harfler','value1','sayac'));
+    return view('medicines.index',compact('harfler','value1','sayac','medicines'));
     }
     public function create(){
         if (Auth::user()==null)
@@ -44,6 +50,7 @@ class MedicinesController extends Controller
         return view('medicines.create',compact('companies'));
     }
     public function store(Request $request){
+        $request['url'] =Str::slug($request->name,"_");
         $data = $request->validate([
             'name' => 'required|max:255',
             'description' => 'required|max:255',
@@ -57,18 +64,18 @@ class MedicinesController extends Controller
             'extra_information' => 'required|max:255',
             'barcode' => 'required|max:255',
             'companies_id' => 'required|max:255',
-            'url' => 'required|url|max:255'
+            'url' => "required|max:255"
             
         ]);
         $medicines = tap(new \App\Medicines($data))->save();
     
         return redirect('/?h=Anasayfa');
     }
-    public function show($name){
-        $name = str_replace('-', ' ', $name);
-        $medicines=Medicines::where('name',$name)->first();
-        $c=Medicines::where('name',$name)->first()->companies_id;
+    public function show($url){
+        $url = str_replace('_', ' ', $url);
+        $medicines=Medicines::where('name',$url)->first();
+        $c=Medicines::where('name',$url)->first()->companies_id;
         $companies=Companies::where('id',$c)->first()->name;
         return view('medicines.show',compact('medicines','companies'));
-    } 
+    }
 }
