@@ -23,7 +23,7 @@
                     </div>
                     <div class="form-group">
                         <label for="description">Kısa Açıklama</label>
-                        <textarea class="form-control" required id="description" name="description">{{ old('description') }}</textarea>
+                        <textarea class="form-control"  id="description" name="description">{{ old('description') }}</textarea>
                         {{-- @error('description')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror --}}
@@ -61,14 +61,14 @@
                     </div>
                     <div class="form-group">
                         <label for="extra_information">Extra Bilgiler</label>
-                        <input type="text" class="form-control" required id="extra_information" name="extra_information" value="{{ old('extra_information') }}">
+                        <input type="text" class="form-control" id="extra_information" name="extra_information" value="{{ old('extra_information') }}">
                         {{-- @error('extra_information')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror --}}
                     </div>
                     <div class="form-group">
                         <label for="barcode">Barkod</label>
-                        <input type="text" class="form-control" required id="barcode" name="barcode" value="{{ old('barcode') }}">
+                        <input type="text" class="form-control" id="barcode" name="barcode" value="{{ old('barcode') }}">
                         {{-- @error('barcode')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror --}}
@@ -83,7 +83,7 @@
                     </div><br>
                     {{-- <div class="form-group">
                         <label for="url">Url</label>
-                        <input type="text" class="form-control" required id="url" name="url" value="{{ old('url') }}">
+                        <input type="text" class="form-control" id="url" name="url" value="{{ old('url') }}">
                     </div><br> --}}
                     <button type="submit" class="btn btn-primary">Kaydet</button>
                 </form>

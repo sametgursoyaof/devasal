@@ -13,6 +13,7 @@ class CompaniesTableSeeder extends Seeder
     {
         DB::table('companies')->insert([
             'name' =>'Kocak Farma',
+            'status'=>'1'
         ]);
     }
 }

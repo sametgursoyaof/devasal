@@ -32,4 +32,20 @@ class CompaniesController extends Controller
     
         return redirect('companies');
     }
+    public function edit($id){
+        $companies=Companies::findOrFail($id);
+        return view('companies.edit',compact('companies'));
+    }
+    public function update($id){
+        $companies=Companies::findOrFail($id);
+        $companies->name=request('name');
+        $companies->save();
+        return redirect('/companies');
+    }
+    public function status($id){
+        $companies=Companies::findOrFail($id);
+        $companies->status==0 ? $companies->status=1 : $companies->status=0;
+        $companies->save();
+        return redirect('/companies');
+    }
 }

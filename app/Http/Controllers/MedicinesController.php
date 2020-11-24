@@ -50,10 +50,14 @@ class MedicinesController extends Controller
         return view('medicines.create',compact('companies'));
     }
     public function store(Request $request){
-        $request['url'] =Str::slug($request->name,"_");
+        $request['url'] =Str::slug($request->name,"-");
+        if (Medicines::where('url',$request['url'])->count() > 0)
+        {
+            $request['url'] =$request['url'] . "_2";
+        };
         $data = $request->validate([
             'name' => 'required|max:255',
-            'description' => 'required|max:255',
+            'description' => 'max:255',
             'formula' => 'max:255|nullable',
             'pharmacological' => 'max:255|nullable',
             'indication' => 'max:255|nullable',
@@ -61,10 +65,10 @@ class MedicinesController extends Controller
             'warning' => 'max:255|nullable',
             'side_effects' => 'max:255|nullable',
             'usage' => 'max:255|nullable',
-            'extra_information' => 'required|max:255',
-            'barcode' => 'required|max:255',
+            'extra_information' => 'max:255',
+            'barcode' => 'max:255',
             'companies_id' => 'required|max:255',
-            'url' => "required|max:255"
+            'url' => "max:255"
             
         ]);
         $medicines = tap(new \App\Medicines($data))->save();

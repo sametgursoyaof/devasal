@@ -16,7 +16,7 @@ class CreateMedicinesTable extends Migration
         Schema::create('medicines', function (Blueprint $table) {
             $table->id();
             $table->text('name');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->text('formula')->nullable();
             $table->text('pharmacological')->nullable();
             $table->text('indication')->nullable();
@@ -24,8 +24,8 @@ class CreateMedicinesTable extends Migration
             $table->text('warning')->nullable();
             $table->text('side_effects')->nullable();
             $table->text('usage')->nullable();
-            $table->text('extra_information');
-            $table->text('barcode');
+            $table->text('extra_information')->nullable();
+            $table->text('barcode')->nullable();
             $table->integer('companies_id');
             $table->text('url');
             $table->timestamps();
