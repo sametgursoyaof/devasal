@@ -27,7 +27,7 @@ class CreateMedicinesTable extends Migration
             $table->text('extra_information');
             $table->text('barcode');
             $table->integer('companies_id');
-            $table->string('url')->unique();
+            $table->text('url');
             $table->timestamps();
         });
     }

@@ -72,10 +72,8 @@ class MedicinesController extends Controller
         return redirect('/?h=Anasayfa');
     }
     public function show($url){
-        $url = str_replace('_', ' ', $url);
-        $medicines=Medicines::where('name',$url)->first();
-        $c=Medicines::where('name',$url)->first()->companies_id;
-        $companies=Companies::where('id',$c)->first()->name;
-        return view('medicines.show',compact('medicines','companies'));
+        $medicines=Medicines::where('url',$url)->firstorFail();
+        $company=$medicines->owner()->get();
+        return view('medicines.show',compact('medicines','company'));
     }
 }

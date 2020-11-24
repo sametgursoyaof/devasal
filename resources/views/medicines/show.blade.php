@@ -56,7 +56,9 @@
       </tr>
       <tr>
         <td>Üretici </td>
-        <td>{{$companies}}</td>
+        @foreach ($company as $c)
+          <td>{{$c->name}}</td>
+        @endforeach
       </tr>
       
     </tbody></table>
