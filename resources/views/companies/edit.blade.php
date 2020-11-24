@@ -42,7 +42,7 @@
                                     <h4 class="font-14 m-0">FİRMAYI SİLMEK İSTEDİĞİNİZE EMİN MİSİNİZ?</h4>
                                     <div class="form-group text-center m-t-20">
                                         <div>
-                                            <a href="/companies/{{ $companies->id }}" class="btn btn-success btn-block btn-sm waves-effect waves-light" type="submit">EVET</a>
+                                            <a href="/companies/status/{{ $companies->id }}" class="btn btn-success btn-block btn-sm waves-effect waves-light" type="submit">EVET</a>
                                             <a href="/companies/{{ $companies->id }}/edit" class="btn btn-info btn-block btn-sm waves-effect waves-light" type="submit" >HAYIR</a>
                                         </div>
                                     </div>
