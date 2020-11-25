@@ -28,3 +28,4 @@ Route::resource('companies', 'CompaniesController');
 Route::get('/', 'MedicinesController@index');
 Route::get('{url}', 'MedicinesController@show');
 Route::get('companies/status/{companies}', 'CompaniesController@status');
+Route::get('medicines/status/{medicines}', 'MedicinesController@status');

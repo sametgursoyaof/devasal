@@ -15,28 +15,28 @@ class MedicinesController extends Controller
 
     $sayac=1;
     $value1=request('h');
-        $medicine = \App\Medicines::all();
+        $medicine = \App\Medicines::where('status',1)->get();
         foreach ($medicine as $m){
             if(isset($value1)){
                 /* dd($value1); */
                 $deger= substr($m->name,0,1);
                 if(substr_count($deger, $value1)){
-                    $medicines = \App\Medicines::where('name',$m->name)->get();
+                    $medicines = \App\Medicines::where('name',$m->name)->where('status',1)->get();
                 }
                 if($value1=='Anasayfa'){
-                    $medicines = \App\Medicines::all();
+                    $medicines = \App\Medicines::where('status',1)->get();
                 } 
                 if($value1=='1'){
                     $deger= substr($m->name,0,1);
                     foreach($tanimsiz as $t){
                         if(substr_count($deger,$t)){
-                            $medicines = \App\Medicines::where('name',$m->name)->get();
+                            $medicines = \App\Medicines::where('name',$m->name)->where('status',1)->get();
                         }
                     }
                 }
             }
             else{
-                $medicines = \App\Medicines::all();
+                $medicines = \App\Medicines::where('status',1)->get();
             }
         }
     return view('medicines.index',compact('harfler','value1','sayac','medicines'));
@@ -79,5 +79,33 @@ class MedicinesController extends Controller
         $medicines=Medicines::where('url',$url)->firstorFail();
         $company=$medicines->owner()->get();
         return view('medicines.show',compact('medicines','company'));
+    }
+    public function edit($id){
+        $medicines=Medicines::findOrFail($id);
+        $companies=Companies::where('status',1)->get();
+        return view('medicines.edit',compact('medicines','companies'));
+    }
+    public function update($id){
+        $medicines=Medicines::findOrFail($id);
+        $medicines->name=request('name');
+        $medicines->description=request('description');
+        $medicines->formula=request('formula');
+        $medicines->pharmacological=request('pharmacological');
+        $medicines->indication=request('indication');
+        $medicines->kontrendikasyon=request('kontrendikasyon');
+        $medicines->warning=request('warning');
+        $medicines->side_effects=request('side_effects');
+        $medicines->usage=request('usage');
+        $medicines->extra_information=request('extra_information');
+        $medicines->barcode=request('barcode');
+        $medicines->companies_id=request('companies_id');
+        $medicines->save();
+        return redirect('/medicines');
+    }
+    public function status($id){
+        $medicines=Medicines::findOrFail($id);
+        $medicines->status==0 ? $medicines->status=1 : $medicines->status=0;
+        $medicines->save();
+        return redirect('/medicines');
     }
 }

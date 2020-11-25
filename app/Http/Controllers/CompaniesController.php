@@ -12,7 +12,7 @@ class CompaniesController extends Controller
         {
             abort(404);
         }
-        $companies = \App\Companies::all();
+        $companies =Companies::where('status',1)->get();
         return view('companies.index',compact('companies'));
     }
     public function create(){
