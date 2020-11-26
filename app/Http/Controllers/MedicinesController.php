@@ -75,7 +75,7 @@ class MedicinesController extends Controller
     
         return redirect('/?h=Anasayfa');
     }
-    public function show($url){
+    public function show($slug){
         $medicines=Medicines::where('slug',$slug)->firstorFail();
         $company=$medicines->owner()->get();
         return view('medicines.show',compact('medicines','company'));
