@@ -24,7 +24,7 @@ class MedicinesTableSeeder extends Seeder
             'extra_information'=>'Reçetesiz ile satilir',
             'barcode'=>'8699828190042',
             'companies_id'=>'1',
-            'url'=>'Ace_plus_selenyum_30_yumusak_kapsul',
+            'slug'=>'Ace_plus_selenyum_30_yumusak_kapsul',
             'status'=>'1'
         ]);
     }

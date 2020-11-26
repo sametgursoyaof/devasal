@@ -27,7 +27,7 @@ class CreateMedicinesTable extends Migration
             $table->text('extra_information')->nullable();
             $table->text('barcode')->nullable();
             $table->integer('companies_id');
-            $table->text('url');
+            $table->text('slug');
             $table->boolean('status')->default(1);
             $table->timestamps();
         });

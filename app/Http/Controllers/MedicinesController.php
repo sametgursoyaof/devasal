@@ -50,10 +50,10 @@ class MedicinesController extends Controller
         return view('medicines.create',compact('companies'));
     }
     public function store(Request $request){
-        $request['url'] =Str::slug($request->name,"-");
-        if (Medicines::where('url',$request['url'])->count() > 0)
+        $request['slug'] =Str::slug($request->name,"-");
+        if (Medicines::where('slug',$request['slug'])->count() > 0)
         {
-            $request['url'] =$request['url'] . "_2";
+            $request['slug'] =$request['slug'] . "_2";
         };
         $data = $request->validate([
             'name' => 'required|max:255',
@@ -68,7 +68,7 @@ class MedicinesController extends Controller
             'extra_information' => 'max:255',
             'barcode' => 'max:255',
             'companies_id' => 'required|max:255',
-            'url' => "max:255"
+            'slug' => "max:255"
             
         ]);
         $medicines = tap(new \App\Medicines($data))->save();
@@ -76,7 +76,7 @@ class MedicinesController extends Controller
         return redirect('/?h=Anasayfa');
     }
     public function show($url){
-        $medicines=Medicines::where('url',$url)->firstorFail();
+        $medicines=Medicines::where('slug',$slug)->firstorFail();
         $company=$medicines->owner()->get();
         return view('medicines.show',compact('medicines','company'));
     }

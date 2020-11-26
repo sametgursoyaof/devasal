@@ -20,7 +20,7 @@ class Medicines extends Model
         'extra_information',
         'barcode',
         'companies_id',
-        'url',
+        'slug',
         'status'
     ];
     public function owner()
