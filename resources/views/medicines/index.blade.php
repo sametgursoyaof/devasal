@@ -77,6 +77,10 @@
                 <div class="title m-b-md">
                     Harfe Göre İlaçlar
                 </div>
+                <form method="GET" action="{{ url('/medicines') }}">
+                    <input type="search" placeholder="İlaç Ara" name="query">
+                    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Ara</button>
+                </form><br>
                 <div>
                     @foreach ($harfler as $h)
                         @if ($h=='#')

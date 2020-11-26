@@ -15,6 +15,12 @@ class MedicinesController extends Controller
 
     $sayac=1;
     $value1=request('h');
+    $search=request('query');
+    if ($search) {
+        $medicines=\App\Medicines::where('name','LIKE','%'.$search.'%')->get();
+    } else {
+        
+    
         $medicine = \App\Medicines::where('status',1)->get();
         foreach ($medicine as $m){
             if(isset($value1)){
@@ -39,6 +45,8 @@ class MedicinesController extends Controller
                 $medicines = \App\Medicines::where('status',1)->get();
             }
         }
+    }
+        
     return view('medicines.index',compact('harfler','value1','sayac','medicines'));
     }
     public function create(){
