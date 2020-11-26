@@ -18,33 +18,29 @@ class MedicinesController extends Controller
     $search=request('query');
     if ($search) {
         $medicines=\App\Medicines::where('name','LIKE','%'.$search.'%')->get();
-    } else {
-        
-    
+    } 
+    else if ($value1) {
         $medicine = \App\Medicines::where('status',1)->get();
         foreach ($medicine as $m){
-            if(isset($value1)){
-                /* dd($value1); */
+            $deger= substr($m->name,0,1);
+            if(substr_count($deger, $value1)){
+                $medicines=\App\Medicines::where('name','regexp',$value1)->where('status',1)->get();
+            }
+            if($value1=='Anasayfa'){
+                $medicines = \App\Medicines::where('status',1)->get();
+            } 
+            if($value1=='1'){
                 $deger= substr($m->name,0,1);
-                if(substr_count($deger, $value1)){
-                    $medicines = \App\Medicines::where('name',$m->name)->where('status',1)->get();
-                }
-                if($value1=='Anasayfa'){
-                    $medicines = \App\Medicines::where('status',1)->get();
-                } 
-                if($value1=='1'){
-                    $deger= substr($m->name,0,1);
-                    foreach($tanimsiz as $t){
-                        if(substr_count($deger,$t)){
-                            $medicines = \App\Medicines::where('name',$m->name)->where('status',1)->get();
-                        }
+                foreach($tanimsiz as $t){
+                    if(substr_count($deger,$t)){
+                        $medicines=\App\Medicines::where('name','regexp',$t)->where('status',1)->get();
                     }
                 }
             }
-            else{
-                $medicines = \App\Medicines::where('status',1)->get();
-            }
         }
+    }
+    else{
+        $medicines = \App\Medicines::where('status',1)->get();
     }
         
     return view('medicines.index',compact('harfler','value1','sayac','medicines'));
