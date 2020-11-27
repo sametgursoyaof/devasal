@@ -24,7 +24,7 @@ class MedicinesController extends Controller
         foreach ($medicine as $m){
             $deger= substr($m->name,0,1);
             if(substr_count($deger, $value1)){
-                $medicines=\App\Medicines::where('name','regexp',$value1)->where('status',1)->get();
+                $medicines=\App\Medicines::where('name','LIKE',$value1.'%')->where('status',1)->get();
             }
             if($value1=='Anasayfa'){
                 $medicines = \App\Medicines::where('status',1)->get();
@@ -33,7 +33,7 @@ class MedicinesController extends Controller
                 $deger= substr($m->name,0,1);
                 foreach($tanimsiz as $t){
                     if(substr_count($deger,$t)){
-                        $medicines=\App\Medicines::where('name','regexp',$t)->where('status',1)->get();
+                        $medicines=\App\Medicines::where('name','LIKE',$t.'%')->where('status',1)->get();
                     }
                 }
             }
