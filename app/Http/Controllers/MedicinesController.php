@@ -112,4 +112,12 @@ class MedicinesController extends Controller
         $medicines->save();
         return redirect('/medicines');
     }
+    public function search(Request $request){
+        $harfler=['Anasayfa','#','A','B','C','D','E','F','G','H','İ','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','Y','X','Z'];
+        $sayac=1;
+        $value1=request('h');
+        $search=request('query');
+        $medicines=\App\Medicines::where('name','LIKE','%'.$search.'%')->get();
+        return view('medicines.index',compact('medicines','harfler','value1','sayac'));
+    }
 }
