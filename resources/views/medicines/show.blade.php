@@ -66,9 +66,7 @@
       </tr>
       <tr>
         <td>Üretici </td>
-        @foreach ($company as $c)
-          <td>{{$c->name}}</td>
-        @endforeach
+        <td>{{$company}}</td>
       </tr>
       
     </tbody></table>

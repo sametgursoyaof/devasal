@@ -82,7 +82,7 @@ class MedicinesController extends Controller
     }
     public function show($slug){
         $medicine=Medicines::where('slug',$slug)->firstorFail();
-        $company=$medicine->owner()->get();
+        $company=$medicine->owner->name;
         return view('medicines.show',compact('medicine','company'));
     }
     public function edit($id){
