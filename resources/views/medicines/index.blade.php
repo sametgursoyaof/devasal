@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="tr">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -47,15 +47,21 @@
             .title {
                 font-size: 84px;
             }
-
+            .links {
+                line-height: 42px;
+                }
             .links > a {
                 color: #636b6f;
-                padding: 0 25px;
+                padding: 8px 16px;
                 font-size: 13px;
                 font-weight: 600;
                 letter-spacing: .1rem;
                 text-decoration: none;
+                border: 1px solid #636b6f;
+            }
+            .links > .admin {
                 text-transform: uppercase;
+                border: none;
             }
 
             .m-b-md {
@@ -68,7 +74,7 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Admin Anasayfa</a>
+                        <a href="{{ url('/home') }}" class="admin">Admin Anasayfa</a>
                     @endauth
                 </div>
             @endif 
@@ -82,13 +88,11 @@
                     <input type="search" placeholder="İlaç Ara" name="query">
                     <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Ara</button>
                 </form><br>
-                <div>
+                <div class="links">
+                    <a class="link" href="/">Anasayfa</a>
+                    <a class="link" href="/ilaclar/1">#</a>
                     @foreach ($harfler as $h)
-                        @if ($h=='#')
-                            <a href="/?h=1">{{$h}}</a>&nbsp;
-                        @else
-                            <a href="/?h={{$h}}">{{$h}}</a>&nbsp;
-                        @endif
+                            <a class="link" href="/ilaclar/{{$h}}">{{$h}}</a>
                     @endforeach
                 </div>
             </div><hr>

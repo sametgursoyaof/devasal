@@ -10,8 +10,7 @@ use Illuminate\Support\Str;
 class MedicinesController extends Controller
 {
     public function index(){
-    $harfler=['Anasayfa','#','A','B','C','D','E','F','G','H','İ','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','Y','X','Z'];
-    $tanimsiz=['%','1','2','3','4','5','6','7','8','9','0'];
+    $harfler=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','Y','X','Z'];
 
     $sayac=1;
     $value1=request('h');
@@ -29,14 +28,6 @@ class MedicinesController extends Controller
             if($value1=='Anasayfa'){
                 $medicines = \App\Medicines::where('status',1)->get();
             } 
-            if($value1=='1'){
-                $deger= substr($m->name,0,1);
-                foreach($tanimsiz as $t){
-                    if(substr_count($deger,$t)){
-                        $medicines=\App\Medicines::where('name','LIKE',$t.'%')->where('status',1)->get();
-                    }
-                }
-            }
         }
     }
     else{
@@ -115,7 +106,7 @@ class MedicinesController extends Controller
         return redirect('/medicines');
     }
     public function search(Request $request){
-        $harfler=['Anasayfa','#','A','B','C','D','E','F','G','H','İ','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','Y','X','Z'];
+        $harfler=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','Y','X','Z'];
         $sayac=1;
         $value1=request('h');
         $search=request('query');
