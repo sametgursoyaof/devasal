@@ -62,17 +62,17 @@ class MedicinesController extends Controller
         $data = $request->validate([
             'name' => 'required|max:255',
             'active_ingredient' => 'max:255',
-            'description' => 'max:255',
+            'description' => 'nullable',
             'formula' => 'max:255|nullable',
-            'pharmacological' => 'max:255|nullable',
-            'indication' => 'max:255|nullable',
-            'kontrendikasyon' => 'max:255|nullable',
-            'warning' => 'max:255|nullable',
-            'side_effects' => 'max:255|nullable',
-            'usage' => 'max:255|nullable',
-            'extra_information' => 'max:255',
+            'pharmacological' => 'nullable',
+            'indication' => 'nullable',
+            'kontrendikasyon' => 'nullable',
+            'warning' => 'nullable',
+            'side_effects' => 'nullable',
+            'usage' => 'nullable',
+            'extra_information' => 'nullable',
             'barcode' => 'max:255',
-            'companies_id' => 'required|max:255',
+            'companies_id' => 'required',
             'slug' => "max:255"
             
         ]);
