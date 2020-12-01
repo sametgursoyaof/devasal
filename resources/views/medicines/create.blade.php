@@ -22,6 +22,13 @@
                         @enderror --}}
                     </div>
                     <div class="form-group">
+                        <label for="active_ingredient">Etken Madde</label>
+                        <input type="text" class="form-control" id="active_ingredient" name="active_ingredient" value="{{ old('active_ingredient') }}">
+                        {{-- @error('name')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror --}}
+                    </div>
+                    <div class="form-group">
                         <label for="description">Kısa Açıklama</label>
                         <textarea class="form-control"  id="description" name="description">{{ old('description') }}</textarea>
                         {{-- @error('description')
@@ -34,34 +41,34 @@
                     </div>
                     <div class="form-group">
                         <label for="pharmacological">Fermakolojik Özellikleri</label>
-                        <input type="text" class="form-control" id="pharmacological" name="pharmacological" value="{{ old('pharmacological') }}">
+                        <textarea type="text" class="form-control" id="pharmacological" name="pharmacological" value="{{ old('pharmacological') }}"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="indication">Endikasyonları</label>
-                        <input type="text" class="form-control" id="indication" name="indication" value="{{ old('indication') }}">
+                        <textarea type="text" class="form-control" id="indication" name="indication" value="{{ old('indication') }}"></textarea>
                         @error('indication')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
                     <div class="form-group">
                         <label for="kontrendikasyon">Kontrendikasyonları</label>
-                        <input type="text" class="form-control" id="kontrendikasyon" name="kontrendikasyon" value="{{ old('kontrendikasyon') }}">
+                        <textarea type="text" class="form-control" id="kontrendikasyon" name="kontrendikasyon" value="{{ old('kontrendikasyon') }}"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="warning">Uyarı</label>
-                        <input type="text" class="form-control" id="warning" name="warning" value="{{ old('warning') }}">
+                        <textarea type="text" class="form-control" id="warning" name="warning" value="{{ old('warning') }}"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="side_effects">Yan Etkileri</label>
-                        <input type="text" class="form-control" id="side_effects" name="side_effects" value="{{ old('side_effects') }}">
+                        <textarea type="text" class="form-control" id="side_effects" name="side_effects" value="{{ old('side_effects') }}"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="usage">Kullanım Şekli ve Dozu</label>
-                        <input type="text" class="form-control" id="usage" name="usage" value="{{ old('usage') }}">
+                        <textarea type="text" class="form-control" id="usage" name="usage" value="{{ old('usage') }}"></textarea>
                     </div>
                     <div class="form-group">
                         <label for="extra_information">Extra Bilgiler</label>
-                        <input type="text" class="form-control" id="extra_information" name="extra_information" value="{{ old('extra_information') }}">
+                        <textarea type="text" class="form-control" id="extra_information" name="extra_information" value="{{ old('extra_information') }}"></textarea>
                         {{-- @error('extra_information')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror --}}

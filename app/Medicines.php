@@ -9,6 +9,7 @@ class Medicines extends Model
 {
     protected $fillable = [
         'name',
+        'active_ingredient',
         'description',
         'formula',
         'pharmacological',

@@ -13,6 +13,7 @@ class MedicinesTableSeeder extends Seeder
     {
         DB::table('medicines')->insert([
             'name' =>'Ace plus selenyum 30 yumusak kapsul',
+            'active_ingredient' =>'Mültivitamin mineral kombinasyonu',
             'description'=>'Vitamin c + vitamin e + selenyum',
             'formula'=>'',
             'pharmacological'=>'',

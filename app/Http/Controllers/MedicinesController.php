@@ -61,6 +61,7 @@ class MedicinesController extends Controller
         };
         $data = $request->validate([
             'name' => 'required|max:255',
+            'active_ingredient' => 'max:255',
             'description' => 'max:255',
             'formula' => 'max:255|nullable',
             'pharmacological' => 'max:255|nullable',
@@ -92,6 +93,7 @@ class MedicinesController extends Controller
     public function update($id){
         $medicines=Medicines::findOrFail($id);
         $medicines->name=request('name');
+        $medicines->active_ingredient=request('active_ingredient');
         $medicines->description=request('description');
         $medicines->formula=request('formula');
         $medicines->pharmacological=request('pharmacological');

@@ -12,6 +12,10 @@
                 <div class="form-group">
                     <label for="name">Firma Adı</label>
                     <input type="text" class="form-control" required id="name" name="name" value="{{ $medicines->name }}">
+                </div><br>
+                <div class="form-group">
+                    <label for="active_ingredient">Etken Madde</label>
+                    <input type="text" class="form-control" id="active_ingredient" name="active_ingredient" value="{{ $medicines->active_ingredient }}">
                 </div>
                 <br>
                 <div class="form-group">
@@ -24,34 +28,34 @@
                 </div>
                 <div class="form-group">
                     <label for="pharmacological">Fermakolojik Özellikleri</label>
-                    <input type="text" class="form-control" id="pharmacological" name="pharmacological" value="{{ $medicines->pharmacological }}">
+                    <textarea type="text" class="form-control" id="pharmacological" name="pharmacological" value="{{ $medicines->pharmacological }}"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="indication">Endikasyonları</label>
-                    <input type="text" class="form-control" id="indication" name="indication" value="{{ $medicines->indication }}">
+                    <textarea type="text" class="form-control" id="indication" name="indication" value="{{ $medicines->indication }}"></textarea>
                     @error('indication')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="kontrendikasyon">Kontrendikasyonları</label>
-                    <input type="text" class="form-control" id="kontrendikasyon" name="kontrendikasyon" value="{{ $medicines->kontrendikasyon }}">
+                    <textarea type="text" class="form-control" id="kontrendikasyon" name="kontrendikasyon" value="{{ $medicines->kontrendikasyon }}"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="warning">Uyarı</label>
-                    <input type="text" class="form-control" id="warning" name="warning" value="{{ $medicines->warning }}">
+                    <textarea type="text" class="form-control" id="warning" name="warning" value="{{ $medicines->warning }}"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="side_effects">Yan Etkileri</label>
-                    <input type="text" class="form-control" id="side_effects" name="side_effects" value="{{ $medicines->side_effects }}">
+                    <textarea type="text" class="form-control" id="side_effects" name="side_effects" value="{{ $medicines->side_effects }}"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="usage">Kullanım Şekli ve Dozu</label>
-                    <input type="text" class="form-control" id="usage" name="usage" value="{{ $medicines->usage }}">
+                    <textarea type="text" class="form-control" id="usage" name="usage" value="{{ $medicines->usage }}"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="extra_information">Extra Bilgiler</label>
-                    <input type="text" class="form-control" id="extra_information" name="extra_information" value="{{ $medicines->extra_information }}">
+                    <textarea type="text" class="form-control" id="extra_information" name="extra_information" value="{{ $medicines->extra_information }}"></textarea>
                 </div>
                 <div class="form-group">
                     <label for="barcode">Barkod</label>

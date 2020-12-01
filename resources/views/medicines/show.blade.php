@@ -21,6 +21,10 @@
         <td>{{$medicines->name}}</td>
       </tr>
       <tr>
+        <td>Etken Madde</td>
+        <td>{{$medicines->active_ingredient}}</td>
+      </tr>
+      <tr>
         <td>Kısa açıklama</td>
         <td>{{$medicines->description}}</td>
       </tr>
