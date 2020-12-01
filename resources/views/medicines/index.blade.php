@@ -89,6 +89,8 @@
                     <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Ara</button>
                 </form><br>
                 <div class="links">
+                    <a class="link" href="/">Anasayfa</a>
+                    <a class="link" href="/ilaclar/1">#</a>
                     @foreach ($harfler as $h)
                             <a class="link" href="/ilaclar/{{$h}}">{{$h}}</a>
                     @endforeach
