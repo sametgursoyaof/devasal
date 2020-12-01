@@ -65,7 +65,10 @@
                 <div class="col-sm-12">
                     <select class="form-control" name=companies_id>
                         @foreach ($company as $c)
-                            <option value="{{ $c->id }}">{{ $c->name }}</option>
+                            <option value="{{ $c->id }}"
+                                @if ($c->id==$medicine->owner->id)
+                                    {{"selected"}} 
+                                @endif>{{ $c->name }}</option>
                         @endforeach
                     </select>
                 </div><br>
