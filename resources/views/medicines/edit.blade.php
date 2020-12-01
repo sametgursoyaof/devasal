@@ -28,34 +28,34 @@
                 </div>
                 <div class="form-group">
                     <label for="pharmacological">Fermakolojik Özellikleri</label>
-                    <textarea type="text" class="form-control" id="pharmacological" name="pharmacological" value="{{ $medicine->pharmacological }}"></textarea>
+                    <textarea type="text" class="form-control" id="pharmacological" name="pharmacological">{{ $medicine->pharmacological }}</textarea>
                 </div>
                 <div class="form-group">
                     <label for="indication">Endikasyonları</label>
-                    <textarea type="text" class="form-control" id="indication" name="indication" value="{{ $medicine->indication }}"></textarea>
+                    <textarea type="text" class="form-control" id="indication" name="indication">{{ $medicine->indication }}</textarea>
                     @error('indication')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="form-group">
                     <label for="kontrendikasyon">Kontrendikasyonları</label>
-                    <textarea type="text" class="form-control" id="kontrendikasyon" name="kontrendikasyon" value="{{ $medicine->kontrendikasyon }}"></textarea>
+                    <textarea type="text" class="form-control" id="kontrendikasyon" name="kontrendikasyon">{{ $medicine->kontrendikasyon }}</textarea>
                 </div>
                 <div class="form-group">
                     <label for="warning">Uyarı</label>
-                    <textarea type="text" class="form-control" id="warning" name="warning" value="{{ $medicine->warning }}"></textarea>
+                    <textarea type="text" class="form-control" id="warning" name="warning">{{ $medicine->warning }}</textarea>
                 </div>
                 <div class="form-group">
                     <label for="side_effects">Yan Etkileri</label>
-                    <textarea type="text" class="form-control" id="side_effects" name="side_effects" value="{{ $medicine->side_effects }}"></textarea>
+                    <textarea type="text" class="form-control" id="side_effects" name="side_effects">{{ $medicine->side_effects }}</textarea>
                 </div>
                 <div class="form-group">
                     <label for="usage">Kullanım Şekli ve Dozu</label>
-                    <textarea type="text" class="form-control" id="usage" name="usage" value="{{ $medicine->usage }}"></textarea>
+                    <textarea type="text" class="form-control" id="usage" name="usage">{{ $medicine->usage }}</textarea>
                 </div>
                 <div class="form-group">
                     <label for="extra_information">Extra Bilgiler</label>
-                    <textarea type="text" class="form-control" id="extra_information" name="extra_information" value="{{ $medicine->extra_information }}"></textarea>
+                    <textarea type="text" class="form-control" id="extra_information" name="extra_information">{{ $medicine->extra_information }}</textarea>
                 </div>
                 <div class="form-group">
                     <label for="barcode">Barkod</label>
