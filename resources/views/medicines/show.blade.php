@@ -5,10 +5,10 @@
     <table class="table">
     <thead>
       <tr>
-        <td colspan="2"><h3>{{$medicines->name}}</h3></td>
+        <td colspan="2"><h3>{{$medicine->name}}</h3></td>
         @if (Auth::user())
           <div class="text-right">
-            <a href="/medicines/{{$medicines->id}}/edit" type="submit" class="btn btn-success btn-md">Düzenle</a>
+            <a href="/medicines/{{$medicine->id}}/edit" type="submit" class="btn btn-success btn-md">Düzenle</a>
             <a data-toggle="modal" data-target=".status-modal" type="submit" class="btn btn-danger btn-md">Sil</a>
           </div>
         @endif
@@ -18,51 +18,51 @@
     <tbody>
       <tr>
         <td>İlaç ismi</td>
-        <td>{{$medicines->name}}</td>
+        <td>{{$medicine->name}}</td>
       </tr>
       <tr>
         <td>Etken Madde</td>
-        <td>{{$medicines->active_ingredient}}</td>
+        <td>{{$medicine->active_ingredient}}</td>
       </tr>
       <tr>
         <td>Kısa açıklama</td>
-        <td>{{$medicines->description}}</td>
+        <td>{{$medicine->description}}</td>
       </tr>
       <tr>
         <td>Formülü</td>
-        <td>{{$medicines->formula}}</td>
+        <td>{{$medicine->formula}}</td>
       </tr>
       <tr>
         <td>Fermakolojik Özellikleri</td>
-        <td>{{$medicines->pharmacological}}</td>
+        <td>{{$medicine->pharmacological}}</td>
       </tr>
       <tr>
         <td>Endikasyonları</td>
-        <td>{{$medicines->indication}}</td>
+        <td>{{$medicine->indication}}</td>
       </tr>
       <tr>
         <td>Kontrendikasyonları</td>
-        <td>{{$medicines->kontrendikasyon}}</td>
+        <td>{{$medicine->kontrendikasyon}}</td>
       </tr>
       <tr>
         <td>Uyarı</td>
-        <td>{{$medicines->warning}}</td>
+        <td>{{$medicine->warning}}</td>
       </tr>
       <tr>
         <td>Yan etkileri</td>
-        <td>{{$medicines->side_effects}}</td>
+        <td>{{$medicine->side_effects}}</td>
       </tr>
       <tr>
         <td>Kullanım Şekli ve Dozu</td>
-        <td>{{$medicines->usage}}</td>
+        <td>{{$medicine->usage}}</td>
       </tr>
       <tr>
         <td>Extra Bilgiler</td>
-        <td>{{$medicines->extra_information}}</td>
+        <td>{{$medicine->extra_information}}</td>
       </tr>
       <tr>
         <td>Barkod </td>
-        <td>{{$medicines->barcode}}</td>
+        <td>{{$medicine->barcode}}</td>
       </tr>
       <tr>
         <td>Üretici </td>
@@ -97,7 +97,7 @@
                             <h4 class="font">İLACI SİLMEK İSTEDİĞİNİZE EMİN MİSİNİZ?</h4>
                             <div class="form-group text-center m-t-20">
                                 <div>
-                                    <a href="/medicines/status/{{ $medicines->id }}" class="btn btn-success btn-block btn-sm waves-effect waves-light" type="submit">EVET</a>
+                                    <a href="/medicines/status/{{ $medicine->id }}" class="btn btn-success btn-block btn-sm waves-effect waves-light" type="submit">EVET</a>
                                     <a href="/medicines" class="btn btn-info btn-block btn-sm waves-effect waves-light" type="submit" >HAYIR</a>
                                 </div>
                             </div>

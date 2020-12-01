@@ -81,37 +81,37 @@ class MedicinesController extends Controller
         return redirect('/?h=Anasayfa');
     }
     public function show($slug){
-        $medicines=Medicines::where('slug',$slug)->firstorFail();
-        $company=$medicines->owner()->get();
-        return view('medicines.show',compact('medicines','company'));
+        $medicine=Medicines::where('slug',$slug)->firstorFail();
+        $company=$medicine->owner()->get();
+        return view('medicines.show',compact('medicine','company'));
     }
     public function edit($id){
-        $medicines=Medicines::findOrFail($id);
-        $companies=Companies::where('status',1)->get();
-        return view('medicines.edit',compact('medicines','companies'));
+        $medicine=Medicines::findOrFail($id);
+        $company=Companies::where('status',1)->get();
+        return view('medicines.edit',compact('medicine','company'));
     }
     public function update($id){
-        $medicines=Medicines::findOrFail($id);
-        $medicines->name=request('name');
-        $medicines->active_ingredient=request('active_ingredient');
-        $medicines->description=request('description');
-        $medicines->formula=request('formula');
-        $medicines->pharmacological=request('pharmacological');
-        $medicines->indication=request('indication');
-        $medicines->kontrendikasyon=request('kontrendikasyon');
-        $medicines->warning=request('warning');
-        $medicines->side_effects=request('side_effects');
-        $medicines->usage=request('usage');
-        $medicines->extra_information=request('extra_information');
-        $medicines->barcode=request('barcode');
-        $medicines->companies_id=request('companies_id');
-        $medicines->save();
+        $medicine=Medicines::findOrFail($id);
+        $medicine->name=request('name');
+        $medicine->active_ingredient=request('active_ingredient');
+        $medicine->description=request('description');
+        $medicine->formula=request('formula');
+        $medicine->pharmacological=request('pharmacological');
+        $medicine->indication=request('indication');
+        $medicine->kontrendikasyon=request('kontrendikasyon');
+        $medicine->warning=request('warning');
+        $medicine->side_effects=request('side_effects');
+        $medicine->usage=request('usage');
+        $medicine->extra_information=request('extra_information');
+        $medicine->barcode=request('barcode');
+        $medicine->companies_id=request('companies_id');
+        $medicine->save();
         return redirect('/medicines');
     }
     public function status($id){
-        $medicines=Medicines::findOrFail($id);
-        $medicines->status==0 ? $medicines->status=1 : $medicines->status=0;
-        $medicines->save();
+        $medicine=Medicines::findOrFail($id);
+        $medicine->status==0 ? $medicine->status=1 : $medicine->status=0;
+        $medicine->save();
         return redirect('/medicines');
     }
     public function search(Request $request){
