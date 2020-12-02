@@ -31,3 +31,4 @@ Route::get('companies/status/{companies}', 'CompaniesController@status');
 Route::get('medicines/status/{medicines}', 'MedicinesController@status');
 Route::get('search/{query}', 'MedicinesController@search');
 Route::post('search', 'MedicinesController@search');
+Route::get('ilaclar/{h}', 'MedicinesController@ilaclar');

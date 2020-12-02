@@ -14,11 +14,11 @@ class MedicinesController extends Controller
 
     $sayac=1;
     $value1=request('h');
-    $search=request('query');
+/*     $search=request('query');
     if ($search) {
         $medicines=\App\Medicines::where('name','LIKE','%'.$search.'%')->get();
-    } 
-    else if ($value1) {
+    }  */
+    /* if ($value1) {
         $medicine = \App\Medicines::where('status',1)->get();
         foreach ($medicine as $m){
             $deger= substr($m->name,0,1);
@@ -30,9 +30,9 @@ class MedicinesController extends Controller
             } 
         }
     }
-    else{
+    else{ */
         $medicines = \App\Medicines::where('status',1)->get();
-    }
+    //}
         
     return view('medicines.index',compact('harfler','value1','sayac','medicines'));
     }
@@ -110,7 +110,14 @@ class MedicinesController extends Controller
         $sayac=1;
         $value1=request('h');
         $search=request('query');
-        $medicines=\App\Medicines::where('name','LIKE','%'.$search.'%')->get();
+        $medicines=\App\Medicines::where('name','LIKE','%'.$search.'%')->where('status',1)->get();
+        return view('medicines.index',compact('medicines','harfler','value1','sayac'));
+    }
+    public function ilaclar($h){
+        $harfler=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','Y','X','Z'];
+        $sayac=1;
+        $value1=request('h');
+        $medicines=\App\Medicines::where('name','LIKE',$h.'%')->where('status',1)->get();
         return view('medicines.index',compact('medicines','harfler','value1','sayac'));
     }
 }
