@@ -11,30 +11,9 @@ class MedicinesController extends Controller
 {
     public function index(){
     $harfler=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','Y','X','Z'];
-
-    $sayac=1;
     $value1=request('h');
-/*     $search=request('query');
-    if ($search) {
-        $medicines=\App\Medicines::where('name','LIKE','%'.$search.'%')->get();
-    }  */
-    /* if ($value1) {
-        $medicine = \App\Medicines::where('status',1)->get();
-        foreach ($medicine as $m){
-            $deger= substr($m->name,0,1);
-            if(substr_count($deger, $value1)){
-                $medicines=\App\Medicines::where('name','LIKE',$value1.'%')->where('status',1)->get();
-            }
-            if($value1=='Anasayfa'){
-                $medicines = \App\Medicines::where('status',1)->get();
-            } 
-        }
-    }
-    else{ */
-        $medicines = \App\Medicines::where('status',1)->get();
-    //}
-        
-    return view('medicines.index',compact('harfler','value1','sayac','medicines'));
+    $medicines = \App\Medicines::where('status',1)->get();
+    return view('medicines.index',compact('harfler','value1','medicines'));
     }
     public function create(){
         if (Auth::user()==null)
@@ -107,17 +86,15 @@ class MedicinesController extends Controller
     }
     public function search(Request $request){
         $harfler=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','Y','X','Z'];
-        $sayac=1;
         $value1=request('h');
         $search=request('query');
         $medicines=\App\Medicines::where('name','LIKE','%'.$search.'%')->where('status',1)->get();
-        return view('medicines.index',compact('medicines','harfler','value1','sayac'));
+        return view('medicines.index',compact('medicines','harfler','value1'));
     }
     public function ilaclar($h){
         $harfler=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','Y','X','Z'];
-        $sayac=1;
         $value1=request('h');
         $medicines=\App\Medicines::where('name','LIKE',$h.'%')->where('status',1)->get();
-        return view('medicines.index',compact('medicines','harfler','value1','sayac'));
+        return view('medicines.index',compact('medicines','harfler','value1'));
     }
 }

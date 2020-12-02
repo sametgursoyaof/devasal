@@ -116,15 +116,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($medicines as $m)
+                        @for ($i = 0; $i < count($medicines); $i++)
                         <tr>
-                            <td>{{$sayac}}</td>
+                            <td>{{$i+1}}</td>
                             <td>
-                                <a href="/{{ $m->slug }}">{{ $m->name }}</a><br>
-                                <input type="hidden"{{$sayac=$sayac+1}}>
+                                <a href="/{{ $medicines[$i]->slug  }}">{{ $medicines[$i]->name }}</a><br>
                             </td>
                         </tr>
-                        @endforeach
+                        @endfor
                     </tbody>
                 </table>
             </div>
