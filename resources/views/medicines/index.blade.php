@@ -120,7 +120,7 @@
                         <tr>
                             <td>{{$sayac}}</td>
                             <td>
-                                <a href="{{ $m->slug }}/detay">{{ $m->name }}</a><br>
+                                <a href="/{{ $m->slug }}">{{ $m->name }}</a><br>
                                 <input type="hidden"{{$sayac=$sayac+1}}>
                             </td>
                         </tr>
