@@ -12,7 +12,8 @@ class MedicinesController extends Controller
     public function index(){
     $harfler=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','Y','X','Z'];
     $value1=request('h');
-    $medicines = \App\Medicines::where('status',1)->get();
+    $limit=20;
+    $medicines = \App\Medicines::where('status',1)->orderBy('created_at','desc')->take($limit)->get();
     return view('medicines.index',compact('harfler','value1','medicines'));
     }
     public function create(){
