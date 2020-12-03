@@ -21,7 +21,7 @@ class MedicinesController extends Controller
         {
             abort(404);
         }
-        $companies=Companies::all();
+        $companies=Companies::where('status',1)->get();
         return view('medicines.create',compact('companies'));
     }
     public function store(Request $request){
