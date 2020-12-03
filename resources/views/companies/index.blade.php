@@ -13,7 +13,7 @@
                             {{-- @foreach ($companies as $c) --}}
                             @for ($i = 0; $i < count($companies); $i++)
                                 <tr>
-                                    <td>{{$companies[$i]->id}}</td>
+                                    <td>{{$i+1}}</td>
                                     <td>{{$companies[$i]->name}}</td> 
                                     <td><a href="/companies/{{$companies[$i]->id}}/edit" type="submit" class="btn btn-success btn-sm">Düzenle</a></td>
                                 </tr>
