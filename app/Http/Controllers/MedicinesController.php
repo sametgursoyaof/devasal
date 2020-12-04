@@ -13,8 +13,14 @@ class MedicinesController extends Controller
     $harfler=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','Y','X','Z'];
     $value1=request('h');
     $limit=20;
+    $firma=request('firma');
+    $companies=Companies::where('status',1)->get();
     $medicines = \App\Medicines::where('status',1)->orderBy('created_at','desc')->take($limit)->get();
-    return view('medicines.index',compact('harfler','value1','medicines'));
+    if(isset($firma))
+    {
+        $medicines=\App\Medicines::where('companies_id',$firma)->where('status',1)->get();
+    }
+    return view('medicines.index',compact('harfler','value1','medicines','companies','firma'));
     }
     public function create(){
         if (Auth::user()==null)
@@ -89,13 +95,17 @@ class MedicinesController extends Controller
         $harfler=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','Y','X','Z'];
         $value1=request('h');
         $search=request('query');
+        $firma=request('firma');
+        $companies=Companies::where('status',1)->get();
         $medicines=\App\Medicines::where('name','LIKE','%'.$search.'%')->where('status',1)->get();
-        return view('medicines.index',compact('medicines','harfler','value1'));
+        return view('medicines.index',compact('medicines','harfler','value1','companies','firma'));
     }
     public function ilaclar($h){
         $harfler=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','Y','X','Z'];
         $value1=request('h');
+        $firma=request('firma');
+        $companies=Companies::where('status',1)->get();
         $medicines=\App\Medicines::where('name','LIKE',$h.'%')->where('status',1)->get();
-        return view('medicines.index',compact('medicines','harfler','value1'));
+        return view('medicines.index',compact('medicines','harfler','value1','companies','firma'));
     }
 }

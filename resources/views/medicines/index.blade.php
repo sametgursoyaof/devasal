@@ -95,6 +95,20 @@
                             <a class="link" href="/ilaclar/{{$h}}">{{$h}}</a>
                     @endforeach
                 </div>
+                <div style="padding-top:10px;padding-bottom:10px;font-size: 20px;">
+                    <label for="title">Firmaya Göre Filtrele:</label>
+                    <select style="font-size: 18px;" id="mySelect" name="mySelect" onchange="myFunction(this)"aria-controls="datatable" class="form-control form-control-sm">
+                        @foreach ($companies as $c)
+                            <option value="{{$c->id}}"{{$firma == "$c->id"  ? "selected" : ""}}>{{$c->name}}</option>
+                            
+                        @endforeach
+                    </select>
+                    <script>
+                        function myFunction(m) {
+                        window.location = '?firma=' + m.value;
+                        }
+                        </script>
+                </div>
             </div><hr>
             <div class="links">
                 <table>
