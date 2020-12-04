@@ -105,7 +105,7 @@
                     </select>
                     <script>
                         function myFunction(m) {
-                        window.location = '?firma=' + m.value;
+                        window.location ='/'+ '?firma=' + m.value;
                         }
                         </script>
                 </div>
