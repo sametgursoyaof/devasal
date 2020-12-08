@@ -127,6 +127,9 @@
                         <tr>
                             <th>İlaç No</th>
                             <th>İlaç İsmi</th>
+                            @if (Auth::user())
+                                <th>Resim Ekle</th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody>
@@ -136,6 +139,11 @@
                             <td>
                                 <a href="/{{ $medicines[$i]->slug  }}">{{ $medicines[$i]->name }}</a><br>
                             </td>
+                            @if (Auth::user())
+                                <td>
+                                    <a href="medicines/{{ $medicines[$i]->id }}/upload">+</a>
+                                </td>
+                            @endif 
                         </tr>
                         @endfor
                     </tbody>

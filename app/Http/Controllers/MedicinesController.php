@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Companies;
 use Illuminate\Http\Request;
 use App\Medicines;
+use App\Images;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Auth;
 use Illuminate\Support\Str;
@@ -60,7 +61,8 @@ class MedicinesController extends Controller
     public function show($slug){
         $medicine=Medicines::where('slug',$slug)->firstorFail();
         $company=$medicine->owner->name;
-        return view('medicines.show',compact('medicine','company'));
+        $image=$medicine->images;
+        return view('medicines.show',compact('medicine','company','image'));
     }
     public function edit($id){
         $medicine=Medicines::findOrFail($id);
@@ -107,5 +109,32 @@ class MedicinesController extends Controller
         $companies=Companies::where('status',1)->get();
         $medicines=\App\Medicines::where('name','LIKE',$h.'%')->where('status',1)->get();
         return view('medicines.index',compact('medicines','harfler','value1','companies','firma'));
+    }
+    public function upload($id)
+    {
+        $medicine=Medicines::findOrFail($id);
+        return view('medicines.upload',compact('medicine'));
+    }
+    public function upload_create(Request $request)
+    {
+        $photo=new Images();
+        $photo->medicine_id=$request->input('medicine_id');
+        if ($request->hasfile('photo')) {
+            $file=$request->file('photo');
+            $extension=$file->getClientOriginalExtension();
+            $filename=time().'.'.$extension;
+            $file->move('uploads/photo/',$filename);
+            $photo->photo=$filename;
+            $id=request('medicine_id');
+        }else{
+            return $request;
+            $photo->photo='';
+        }
+        $photo->save();
+        $medicine=Medicines::findOrFail($id);
+        $company=Companies::where('status',1)->get();
+        $image=$medicine->images;
+        return view('medicines.show',compact('medicine','company','image'));
+
     }
 }

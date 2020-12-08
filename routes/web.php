@@ -33,3 +33,5 @@ Route::get('search/{query}', 'MedicinesController@search');
 Route::post('search', 'MedicinesController@search');
 Route::get('ilaclar/{h}', 'MedicinesController@ilaclar');
 Route::get('ilaclar/{slug}', 'MedicinesController@show');
+Route::get('medicines/{id}/upload', 'MedicinesController@upload');
+Route::post('/addimage', 'MedicinesController@upload_create')->name('addimage');

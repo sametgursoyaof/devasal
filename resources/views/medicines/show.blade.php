@@ -17,6 +17,11 @@
     
     <tbody>
       <tr>
+        @foreach ($image as $i)
+          <td><img src="{{asset('uploads/photo/'.$i->photo)}}" width="200px" height="200px" alt="photo"></td>
+        @endforeach
+    </tr>
+      <tr>
         <td>İlaç ismi</td>
         <td>{{$medicine->name}}</td>
       </tr>
