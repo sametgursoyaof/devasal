@@ -7,6 +7,7 @@ use App\Medicines;
 use App\Images;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 class MedicinesController extends Controller
 {
@@ -117,25 +118,24 @@ class MedicinesController extends Controller
     }
     public function upload_create(Request $request)
     {
+        $photo=new Images();
+        $photo->medicine_id=$request->input('medicine_id');
+        if ($request->hasfile('photo')) {
+            $file=$request->file('photo');
+            $extension=$file->getClientOriginalExtension();
+            $filename=time().'.'.$extension;
+            $file->move('uploads/photo/',$filename);
+            $photo->photo=$filename;
+        }else{
+            abort(404);
+        }
+        $photo->save();
         $id=request('medicine_id');
         $medicine=Medicines::findOrFail($id);
-        if($medicine){
-            $photo=new Images();
-            $photo->medicine_id=$request->input('medicine_id');
-            if ($request->hasfile('photo')) {
-                $file=$request->file('photo');
-                $extension=$file->getClientOriginalExtension();
-                $filename=time().'.'.$extension;
-                $file->move('uploads/photo/',$filename);
-                $photo->photo=$filename;
-            }else{
-                abort(404);
-            }
-            $photo->save();
-            $company=Companies::where('status',1)->get();
-            $image=$medicine->images;
-        }
-        return view('medicines.show',compact('medicine','company','image'));
+        $company=Companies::where('status',1)->get();
+        $image=$medicine->images;
+        return redirect($medicine->slug)->with(compact('medicine','company','image'));
+        //return redirect()->route('medicines.show',compact('medicine','company','image'));
 
     }
 }
