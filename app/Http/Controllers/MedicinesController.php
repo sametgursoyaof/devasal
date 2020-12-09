@@ -117,23 +117,24 @@ class MedicinesController extends Controller
     }
     public function upload_create(Request $request)
     {
-        $photo=new Images();
-        $photo->medicine_id=$request->input('medicine_id');
-        if ($request->hasfile('photo')) {
-            $file=$request->file('photo');
-            $extension=$file->getClientOriginalExtension();
-            $filename=time().'.'.$extension;
-            $file->move('uploads/photo/',$filename);
-            $photo->photo=$filename;
-            $id=request('medicine_id');
-        }else{
-            return $request;
-            $photo->photo='';
-        }
-        $photo->save();
+        $id=request('medicine_id');
         $medicine=Medicines::findOrFail($id);
-        $company=Companies::where('status',1)->get();
-        $image=$medicine->images;
+        if($medicine){
+            $photo=new Images();
+            $photo->medicine_id=$request->input('medicine_id');
+            if ($request->hasfile('photo')) {
+                $file=$request->file('photo');
+                $extension=$file->getClientOriginalExtension();
+                $filename=time().'.'.$extension;
+                $file->move('uploads/photo/',$filename);
+                $photo->photo=$filename;
+            }else{
+                abort(404);
+            }
+            $photo->save();
+            $company=Companies::where('status',1)->get();
+            $image=$medicine->images;
+        }
         return view('medicines.show',compact('medicine','company','image'));
 
     }
