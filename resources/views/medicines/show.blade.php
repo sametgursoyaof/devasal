@@ -19,12 +19,14 @@
       <tr>
         @foreach ($image as $i)
           <td><img src="{{asset('/storage/photo/'.$i->photo)}}" width="200px" height="200px" alt="photo">
+            @auth
             <form action="/remove_image" method="post">
               @csrf
               <input type="hidden" name="i_id" value="{{ $i->id }}">
               <input type="hidden" name="medicine_id" value="{{ $medicine->id }}">
               <button type="submit" class="btn btn-danger btn-sm">X</button>
             </form>
+            @endauth
           </td>
         @endforeach
     </tr>
