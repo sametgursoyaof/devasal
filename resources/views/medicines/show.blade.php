@@ -18,7 +18,14 @@
     <tbody>
       <tr>
         @foreach ($image as $i)
-          <td><img src="{{asset('/storage/photo/'.$i->photo)}}" width="200px" height="200px" alt="photo"></td>
+          <td><img src="{{asset('/storage/photo/'.$i->photo)}}" width="200px" height="200px" alt="photo">
+            <form action="/destroy" method="post">
+              @csrf
+              <input type="hidden" name="i_id" value="{{ $i->id }}">
+              <input type="hidden" name="medicine_id" value="{{ $medicine->id }}">
+              <button type="submit" class="btn btn-danger btn-sm">X</button>
+            </form>
+          </td>
         @endforeach
     </tr>
       <tr>

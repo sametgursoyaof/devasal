@@ -17,6 +17,7 @@ class CreateImagesTable extends Migration
             $table->id();
             $table->integer('medicine_id');
             $table->mediumText('photo');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

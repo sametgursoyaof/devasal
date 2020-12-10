@@ -66,6 +66,10 @@ class MedicinesController extends Controller
         return view('medicines.show',compact('medicine','company','image'));
     }
     public function edit($id){
+        if (Auth::user()==null)
+        {
+            abort(404);
+        }
         $medicine=Medicines::findOrFail($id);
         $company=Companies::where('status',1)->get();
         return view('medicines.edit',compact('medicine','company'));
@@ -113,11 +117,19 @@ class MedicinesController extends Controller
     }
     public function upload($id)
     {
+        if (Auth::user()==null)
+        {
+            abort(404);
+        }
         $medicine=Medicines::findOrFail($id);
         return view('medicines.upload',compact('medicine'));
     }
     public function upload_create(Request $request)
     {
+        if (Auth::user()==null)
+        {
+            abort(404);
+        }
         $id=request('medicine_id');
         $medicine=Medicines::findOrFail($id);
         $photo=new Images();
@@ -137,5 +149,13 @@ class MedicinesController extends Controller
         return redirect(url($medicine->slug));
         //return redirect()->route('medicines.show',compact('medicine','company','image'));
 
+    }
+    public function destroy()
+    {
+        $image_id=request('i_id');
+        $medicine_id=request('medicine_id');
+        $medicine=Medicines::findOrFail($medicine_id);
+        Images::findOrFail($image_id)->delete();
+        return redirect(url($medicine->slug));
     }
 }
