@@ -18,7 +18,7 @@
     <tbody>
       <tr>
         @foreach ($image as $i)
-          <td><img src="{{asset('uploads/photo/'.$i->photo)}}" width="200px" height="200px" alt="photo"></td>
+          <td><img src="{{asset('/storage/photo/'.$i->photo)}}" width="200px" height="200px" alt="photo"></td>
         @endforeach
     </tr>
       <tr>
