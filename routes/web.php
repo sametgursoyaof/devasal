@@ -35,4 +35,4 @@ Route::get('ilaclar/{h}', 'MedicinesController@ilaclar');
 Route::get('ilaclar/{slug}', 'MedicinesController@show');
 Route::get('medicines/{id}/upload', 'MedicinesController@upload');
 Route::post('/addimage', 'MedicinesController@upload_create')->name('addimage');
-Route::post('/destroy', 'MedicinesController@destroy');
+Route::post('/remove_image', 'MedicinesController@remove_image');

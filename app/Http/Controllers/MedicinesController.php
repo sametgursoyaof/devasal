@@ -144,13 +144,11 @@ class MedicinesController extends Controller
         }else{
             abort(404);
         }
-        $company=Companies::where('status',1)->get();
-        $image=$medicine->images;
         return redirect(url($medicine->slug));
         //return redirect()->route('medicines.show',compact('medicine','company','image'));
 
     }
-    public function destroy()
+    public function remove_image()
     {
         $image_id=request('i_id');
         $medicine_id=request('medicine_id');

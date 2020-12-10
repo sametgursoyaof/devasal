@@ -19,7 +19,7 @@
       <tr>
         @foreach ($image as $i)
           <td><img src="{{asset('/storage/photo/'.$i->photo)}}" width="200px" height="200px" alt="photo">
-            <form action="/destroy" method="post">
+            <form action="/remove_image" method="post">
               @csrf
               <input type="hidden" name="i_id" value="{{ $i->id }}">
               <input type="hidden" name="medicine_id" value="{{ $medicine->id }}">
