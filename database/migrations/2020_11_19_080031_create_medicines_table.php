@@ -29,7 +29,7 @@ class CreateMedicinesTable extends Migration
             $table->text('barcode')->nullable();
             $table->integer('companies_id');
             $table->text('slug');
-            $table->boolean('status')->default(1);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

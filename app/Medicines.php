@@ -6,6 +6,7 @@ use App\Images;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\SoftDeletes;
 class Medicines extends Model
 {
     protected $fillable = [
@@ -23,7 +24,6 @@ class Medicines extends Model
         'barcode',
         'companies_id',
         'slug',
-        'status'
     ];
     public function owner()
     {
@@ -33,4 +33,6 @@ class Medicines extends Model
     {
         return $this->hasMany(Images::class,'medicine_id','id');
     }
+    use SoftDeletes;
+
 }

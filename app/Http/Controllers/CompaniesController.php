@@ -12,7 +12,7 @@ class CompaniesController extends Controller
         {
             abort(404);
         }
-        $companies =Companies::where('status',1)->get();
+        $companies =Companies::all();
         return view('companies.index',compact('companies'));
     }
     public function create(){
@@ -43,9 +43,9 @@ class CompaniesController extends Controller
         return redirect('/companies');
     }
     public function status($id){
-        $companies=Companies::findOrFail($id);
-        $companies->status==0 ? $companies->status=1 : $companies->status=0;
-        $companies->save();
+        $companies=Companies::findOrFail($id)->delete();
+        /* $companies->status==0 ? $companies->status=1 : $companies->status=0;
+        $companies->save(); */
         return redirect('/companies');
     }
 }

@@ -16,11 +16,11 @@ class MedicinesController extends Controller
     $value1=request('h');
     $limit=20;
     $firma=request('firma');
-    $companies=Companies::where('status',1)->get();
-    $medicines = \App\Medicines::where('status',1)->orderBy('created_at','desc')->take($limit)->get();
+    $companies=Companies::all();
+    $medicines = \App\Medicines::orderBy('created_at','desc')->take($limit)->get();
     if(isset($firma))
     {
-        $medicines=\App\Medicines::where('companies_id',$firma)->where('status',1)->get();
+        $medicines=\App\Medicines::where('companies_id',$firma)->get();
     }
     return view('medicines.index',compact('harfler','value1','medicines','companies','firma'));
     }
@@ -29,7 +29,7 @@ class MedicinesController extends Controller
         {
             abort(404);
         }
-        $companies=Companies::where('status',1)->get();
+        $companies=Companies::all();
         return view('medicines.create',compact('companies'));
     }
     public function store(Request $request){
@@ -71,7 +71,7 @@ class MedicinesController extends Controller
             abort(404);
         }
         $medicine=Medicines::findOrFail($id);
-        $company=Companies::where('status',1)->get();
+        $company=Companies::all();
         return view('medicines.edit',compact('medicine','company'));
     }
     public function update($id){
@@ -93,9 +93,9 @@ class MedicinesController extends Controller
         return redirect('/medicines');
     }
     public function status($id){
-        $medicine=Medicines::findOrFail($id);
-        $medicine->status==0 ? $medicine->status=1 : $medicine->status=0;
-        $medicine->save();
+        $medicine=Medicines::findOrFail($id)->delete();
+        /* $medicine->status==0 ? $medicine->status=1 : $medicine->status=0;
+        $medicine->save(); */
         return redirect('/medicines');
     }
     public function search(Request $request){
@@ -104,7 +104,7 @@ class MedicinesController extends Controller
         $search=request('query');
         $firma=request('firma');
         $companies=Companies::where('status',1)->get();
-        $medicines=\App\Medicines::where('name','LIKE','%'.$search.'%')->where('status',1)->get();
+        $medicines=\App\Medicines::where('name','LIKE','%'.$search.'%')->get();
         return view('medicines.index',compact('medicines','harfler','value1','companies','firma'));
     }
     public function ilaclar($h){
@@ -112,7 +112,7 @@ class MedicinesController extends Controller
         $value1=request('h');
         $firma=request('firma');
         $companies=Companies::where('status',1)->get();
-        $medicines=\App\Medicines::where('name','LIKE',$h.'%')->where('status',1)->get();
+        $medicines=\App\Medicines::where('name','LIKE',$h.'%')->get();
         return view('medicines.index',compact('medicines','harfler','value1','companies','firma'));
     }
     public function upload($id)
