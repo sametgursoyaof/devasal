@@ -103,7 +103,7 @@ class MedicinesController extends Controller
         $value1=request('h');
         $search=request('query');
         $firma=request('firma');
-        $companies=Companies::where('status',1)->get();
+        $companies=Companies::all();
         $medicines=\App\Medicines::where('name','LIKE','%'.$search.'%')->get();
         return view('medicines.index',compact('medicines','harfler','value1','companies','firma'));
     }
@@ -111,7 +111,7 @@ class MedicinesController extends Controller
         $harfler=['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','Y','X','Z'];
         $value1=request('h');
         $firma=request('firma');
-        $companies=Companies::where('status',1)->get();
+        $companies=Companies::all();
         $medicines=\App\Medicines::where('name','LIKE',$h.'%')->get();
         return view('medicines.index',compact('medicines','harfler','value1','companies','firma'));
     }
