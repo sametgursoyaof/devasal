@@ -6,8 +6,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>Devasal İlaç Platformu</title>
+    <title>@yield('title','Devasal İlaç Platformu')</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>

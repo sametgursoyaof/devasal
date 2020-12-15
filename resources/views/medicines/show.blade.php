@@ -1,5 +1,6 @@
 
 @extends('layouts.app')
+@section('title',$medicine->name)
 @section('content')
 <div class="tab-content rtableholder">
     <table class="table">
